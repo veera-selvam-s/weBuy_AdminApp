@@ -1,17 +1,21 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Button } from '@material-ui/core';
 import Input from '../components/UI/Input';
 import { login } from '../actions/auth.actions';
 import { useDispatch } from 'react-redux';
 
-function Signin() {
+const Signin = (props) => {
+
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [error,setError] = useState('');
+
     const dispatch = useDispatch();
     const userLogin = (e) => {
         e.preventDefault();
         const user = {
-            email: 'admin123@gmail.com',
-            password: 'admin123'
+            email,password
         }
         dispatch(login(user));
     }
@@ -24,17 +28,17 @@ function Signin() {
                             <Input
                                 label="Email"
                                 placeholder="example@mail.com"
-                                value=""
+                                value={email}
                                 type="email"
-                                onChange={() => { }}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
 
                             <Input
                                 label="Password"
                                 placeholder="password"
-                                value=""
+                                value={password}
                                 type="password"
-                                onChange={() => { }}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <Button variant="contained" type="submit" color="primary">
                                 Submit
