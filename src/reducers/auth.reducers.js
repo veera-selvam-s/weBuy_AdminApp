@@ -1,15 +1,16 @@
-import { authConstants } from '../actions/constants';
+import { authConstants } from '../actions/constants'; //importing authenticating variables
 
 const initState = {
-    token:null,
-    user:{
-      firstName:'',
-      lastname:'',
-      email:'',
-      picture:'',
+    //initial state values
+    token: null,
+    user: {
+        firstName: '',
+        lastname: '',
+        email: '',
+        picture: '',
     },
-    authenticate:false,
-    authenticating:false
+    authenticate: false,
+    authenticating: false
 };
 
 export default (state = initState, action) => {
@@ -18,15 +19,16 @@ export default (state = initState, action) => {
         case authConstants.LOGIN_REQUEST:
             state = {
                 ...state,
-                authenticating:true
+                authenticating: true
             }
             break;
         case authConstants.LOGIN_SUCCESS:
             state = {
-               ...state,
-                user:action.payload.user,
+                ...state,
+                user: action.payload.user,
                 token: action.payload.token,
-                authenticate:true
+                authenticate: true,
+                authenticating: false
             }
             break;
     }
