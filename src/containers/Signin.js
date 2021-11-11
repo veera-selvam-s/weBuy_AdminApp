@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Button } from '@material-ui/core';
 import Input from '../components/UI/Input';
 import { login } from '../actions/auth.actions';
 import { useDispatch ,useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {isUserLoggedIn} from '../actions/auth.actions';
 
 const Signin = (props) => {
 
@@ -14,7 +15,12 @@ const Signin = (props) => {
     const auth = useSelector(state => state.auth);
 
     const dispatch = useDispatch();
-
+	
+	useEffect(()=>{
+		if(!auth.authenticate){
+			dispatch(isUserLoggedIn());	
+		}
+	},[]);
     
 
     const userLogin = (e) => {
