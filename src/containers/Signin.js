@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Button } from '@material-ui/core';
 import Input from '../components/UI/Input';
 import { login } from '../actions/auth.actions';
-import { useDispatch ,useSelector} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 const Signin = (props) => {
 
@@ -14,9 +14,9 @@ const Signin = (props) => {
     const auth = useSelector(state => state.auth);
 
     const dispatch = useDispatch();
-	
-	
-    
+
+
+
 
     const userLogin = (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ const Signin = (props) => {
         dispatch(login(user));
     }
 
-    if(auth.authenticate){
+    if (auth.authenticate) {
         return <Redirect to={`/`} />
     }
 
