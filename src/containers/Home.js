@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Row, Col, Container } from 'reactstrap';
+import {  Row, Col, Container } from 'reactstrap';
 import './home.css';
 
 function Home() {

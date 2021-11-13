@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Button } from '@material-ui/core';
 import Input from '../components/UI/Input';

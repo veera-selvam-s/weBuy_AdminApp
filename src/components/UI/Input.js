@@ -4,7 +4,7 @@ import { FormGroup,FormHelperText,TextField } from '@material-ui/core';
 const Input=(props)=> {
     return (
 
-            <FormGroup className="mb-3" controlId="formBasicEmail">
+            <FormGroup className="mb-3" >
                 {/* <FormLabel style={{ fontWeight: "600" }}>{props.label}</FormLabel> */}
                 {/* <Form.Control
                     type={props.type}
