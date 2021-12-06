@@ -5,6 +5,7 @@ import Input from '../components/UI/Input';
 import { login } from '../actions/auth.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Layout from '../components/Layout';
 
 const Signin = (props) => {
 
@@ -31,7 +32,7 @@ const Signin = (props) => {
     }
 
     return (
-        <div>
+        <Layout>
             <Container>
                 <Row style={{ marginTop: '40px' }}>
                     <Col md={{ span: 6, offset: 3 }}>
@@ -58,7 +59,7 @@ const Signin = (props) => {
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </Layout>
     )
 }
 

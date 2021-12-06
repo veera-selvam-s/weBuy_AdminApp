@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../actions/user.actions';
+import Layout from '../components/Layout';
 
 const Signup = (props) => {
 
@@ -37,7 +38,7 @@ const Signup = (props) => {
     }
 
     return (
-        <div>
+        <Layout>
             <Container>
                 {user.message}
                 <Row style={{ marginTop: '40px' }}>
@@ -85,7 +86,7 @@ const Signup = (props) => {
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </Layout>
     )
 }
 
