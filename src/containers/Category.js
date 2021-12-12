@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import { Container, Row, Col, Modal, Button, } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, addCategory } from '../actions';
 import Input from '../components/UI/Input';
-
+import Modal from '../components/UI/Modal';
 const Category = (props) => {
     const category = useSelector(state => state.category);
     const [categoryName, setCategoryName] = useState('');
@@ -14,23 +15,29 @@ const Category = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllCategory());
-    }, []);
+        
+        if (!category.loading) {
+            setShow(false);
+        }
+
+    }, [category.loading]);
 
     const handleClose = () => {
 
         const form = new FormData();
 
+        if (categoryName === "") {
+            alert('Category name is required');
+            setShow(false);
+            return;
+        }
+
         form.append('name', categoryName);
         form.append('parentId', parentCategoryId);
         form.append('categoryImage', categoryImage);
         dispatch(addCategory(form));
-        // const cat = {
-        //     categoryName,
-        //     parentCategoryId,
-        //     categoryImage
-        // };
-
+        setCategoryName('');
+        setParentCategoryId('');
         setShow(false);
     }
     const handleShow = () => setShow(true);
@@ -77,7 +84,7 @@ const Category = (props) => {
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>Category</h3>
-                            <Button onClick={handleShow}>Add</Button>
+                            <Button variant="contained" color="primary" onClick={handleShow}>Add</Button>
                         </div>
 
                     </Col>
@@ -92,14 +99,11 @@ const Category = (props) => {
 
             </Container>
 
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add new Category</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                    <Input
+            <Modal 
+            show={show} handleClose={handleClose}
+            modalTitle={'Add new Category'}
+            >
+            <Input
                         value={categoryName}
                         placeholder={`Category Name`}
                         onChange={(e) => setCategoryName(e.target.value)}
@@ -118,12 +122,6 @@ const Category = (props) => {
                         }
                     </select>
                     <input type="file" name="categoryimage" onChange={handleCategoryImage} />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </Layout>
     )

@@ -1,16 +1,15 @@
 import {categoryConstants} from '../actions/constants';
-
-const initState ={
-    categories:[],
-    loading:false,
-    error:null
-
+const initState = {
+    categories: [],
+    loading: false,
+    error: null
 };
+
 
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if (parentId == undefined) {
+    if(parentId == undefined){
         return [
             ...categories,
             {
@@ -22,10 +21,10 @@ const buildNewCategories = (parentId, categories, category) => {
             }
         ];
     }
+    
+    for(let cat of categories){
 
-    for (let cat of categories) {
-
-        if (cat._id == parentId) {
+        if(cat._id == parentId){
             const newCategory = {
                 _id: category._id,
                 name: category.name,
@@ -38,34 +37,35 @@ const buildNewCategories = (parentId, categories, category) => {
                 ...cat,
                 children: cat.children.length > 0 ? [...cat.children, newCategory] : [newCategory]
             })
-        } else {
+        }else{
             myCategories.push({
                 ...cat,
                 children: cat.children ? buildNewCategories(parentId, cat.children, category) : []
             });
         }
 
-
+        
     }
 
 
     return myCategories;
 }
 
-export default (state = initState,action) =>{
+
+export default (state = initState, action) => {
     switch(action.type){
         case categoryConstants.GET_ALL_CATEGORIES_SUCCESS:
-            state={
+            state = {
                 ...state,
-                categories:action.payload.categories
+                categories: action.payload.categories
             }
-        break;
+            break;
         case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
             state = {
                 ...state,
                 loading: true
             }
-        break;
+            break;
         case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
             const category = action.payload.category;
             const updatedCategories = buildNewCategories(category.parentId, state.categories, category);
@@ -122,7 +122,7 @@ export default (state = initState,action) =>{
                 error: action.payload.error
             }
             break;
-
     }
+
     return state;
 }

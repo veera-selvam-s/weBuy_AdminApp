@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import { Container, Row, Col, Modal, Button, } from 'react-bootstrap';
+import { Container, Row, Col,Table } from 'react-bootstrap';
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../components/UI/Input';
 import { addProduct } from "../actions";
+import Modal from '../components/UI/Modal';
 
 const Products = (props) => {
     const [name, setName] = useState("");
@@ -50,8 +52,38 @@ const Products = (props) => {
     const handleProductPictures = (e) => {
         setProductPictures([...productPictures, e.target.files[0]]);
     };
-
-    console.log(productPictures)
+    const renderProducts = () => {
+        return (
+        <Table style={{ fontSize: 12 }} responsive="sm">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            {product.products.length > 0
+                ? product.products.map((product) => (
+                    <tr key={product._id}>
+                    <td>2</td>
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{product.quantity}</td>
+                    <td>{product.description}</td>
+                    <td>--
+                    </td>
+                    </tr>
+                ))
+                : null}
+            </tbody>
+        </Table>
+        );
+    };
+    
     return(
         <Layout sidebar>
         <Container>
@@ -59,75 +91,71 @@ const Products = (props) => {
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>Products</h3>
-                            <Button onClick={handleShow}>Add</Button>
+                            <Button variant="contained" color="primary" onClick={handleShow}>Add</Button>
                         </div>
 
                     </Col>
                 </Row>
-                
+                <Row>
+                    <Col>
+                        {renderProducts()}
+                    </Col>
+                </Row>
 
             </Container>
             
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add new Product</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                    <Input
-                        label='Name'
-                        value={name}
-                        placeholder={`Product Name`}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <Input
-                    label="Quantity"
-                    value={quantity}
-                    placeholder={`Quantity`}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    />
-                    <Input
-                    label="Price"
-                    value={price}
-                    placeholder={`Price`}
-                    onChange={(e) => setPrice(e.target.value)}
-                    />
-                    <Input
-                    label="Description"
-                    value={description}
-                    placeholder={`Description`}
-                    onChange={(e) => setDescription(e.target.value)}
-                    />
-                    <select
-                        className="form-control"
-                        value={categoryId}
-                        onChange={(e) => setCategoryId(e.target.value)}
-                    >
-                        <option>select category</option>
-                        {createCategoryList(category.categories).map((option) => (
-                            <option key={option.value} value={option.value}>
-                            {option.name}
-                            </option>
-                        ))}
-                    </select>
-                    {productPictures.length > 0
-                        ? productPictures.map((pic, index) => (
-                            <div key={index}>{pic.name}</div>
-                            ))
-                        : null
-                    }
-                    <input
-                        type="file"
-                        name="productPicture"
-                        onChange={handleProductPictures}
-                    />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <Modal
+        show={show}
+        handleClose={handleClose}
+        modalTitle={"Add New Product"}
+      >
+        <Input
+          label="Name"
+          value={name}
+          placeholder={`Product Name`}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          label="Quantity"
+          value={quantity}
+          placeholder={`Quantity`}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <Input
+          label="Price"
+          value={price}
+          placeholder={`Price`}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        <Input
+          label="Description"
+          value={description}
+          placeholder={`Description`}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <select
+          className="form-control"
+          value={categoryId}
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option>select category</option>
+          {createCategoryList(category.categories).map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        {productPictures.length > 0
+          ? productPictures.map((pic, index) => (
+              <div key={index}>{pic.name}</div>
+            ))
+          : null}
+        <input
+          type="file"
+          name="productPicture"
+          onChange={handleProductPictures}
+        />
+      </Modal>
         </Layout>
     )
 }
