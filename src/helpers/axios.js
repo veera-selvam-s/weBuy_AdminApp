@@ -1,8 +1,11 @@
 import axios from 'axios';//axios package
 import { api } from '../urlConfig';//getting base url from urlconfig
+import store from '../store';
+import { authConstants } from '../actions/constants';
+
 const token = window.localStorage.getItem('token');
 
-const axiosInstance = axios.create({ //creating axios instance
+const axiosIntance = axios.create({ //creating axios instance
     baseURL: api,//assinged base url
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -12,4 +15,24 @@ const axiosInstance = axios.create({ //creating axios instance
     }
 });
 
-export default axiosInstance;
+axiosIntance.interceptors.request.use((req) => {
+    const { auth } = store.getState();
+    if(auth.token){
+        req.headers.Authorization = `Bearer ${auth.token}`;
+    }
+    return req;
+})
+
+axiosIntance.interceptors.response.use((res) => {
+    return res;
+}, (error) => {
+    console.log(error.response);
+    const { status } = error.response;
+    if(status === 500){
+        localStorage.clear();
+        store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
+    }
+    return Promise.reject(error);
+})
+
+export default axiosIntance;
