@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { Container, Row, Col } from 'react-bootstrap';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
     getAllCategory, 
@@ -293,14 +294,16 @@ const Category = (props) => {
                 buttons={[
                     {
                         label: 'No',
-                        color: 'primary',
+                        variant: 'outlined',
+                        color:'primary',
                         onClick: () => {
                             alert('no');
                         }
                     },
                     {
                         label: 'Yes',
-                        color: 'danger',
+                        variant: 'contained',
+                        color:'error',
                         onClick: deleteCategories
                     }
                 ]}
@@ -351,7 +354,7 @@ const Category = (props) => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button variant="outlined" color="error" onClick={deleteCategory}>Delete</Button>
+                        <Button variant="outlined" color="error" onClick={deleteCategory} startIcon={<DeleteIcon />}>Delete</Button>
                         <Button color="secondary" onClick={updateCategory}>Edit</Button>
                     </Col>
                 </Row>
