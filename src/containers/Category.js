@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Button } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
     getAllCategory, 
