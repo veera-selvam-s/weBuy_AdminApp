@@ -2,7 +2,8 @@ import React from 'react'
 import { Navbar, Nav, Container, } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { signout } from '../actions/auth.actions'
+import { signout } from '../actions/auth.actions';
+import logo from '../logo.png'
 
 const Header = (props) => {
 
@@ -34,11 +35,16 @@ const Header = (props) => {
             </Nav>
         );
     }
+    const logoStyle={
+        width:'3%',
+        height:'auto'
+    }
 
     return (
         <>
             <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
                 <Container fluid>
+                    <img src={logo} style={logoStyle} alt="logo" />
                     {/* <Navbar.Brand >Admin DashBoard</Navbar.Brand> */}
                     <Link to="/" className="navbar-brand">Admin DashBoard</Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
