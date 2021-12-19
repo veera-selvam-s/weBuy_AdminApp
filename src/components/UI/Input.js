@@ -1,32 +1,23 @@
 import React from 'react';
-import { FormGroup,FormHelperText,TextField } from '@material-ui/core';
+import { Form } from 'react-bootstrap';
 
-const Input=(props)=> {
-    return (
-
-            <FormGroup className="mb-3" >
-                {/* <FormLabel style={{ fontWeight: "600" }}>{props.label}</FormLabel> */}
-                {/* <Form.Control
-                    type={props.type}
-                    placeholder={props.placeholder}
-                    value={props.value}
-                    onChange={props.onChange}
-                /> */}
-                <TextField id="standard-basic"
-                label={props.label}
-                type={props.type}
-                    placeholder={props.placeholder}
-                    value={props.value}
-                    onChange={props.onChange}
-
-                />
-
-                <FormHelperText className="text-muted">
-                    {props.errorMessage}
-                </FormHelperText>
-            </FormGroup>
-
-    );
-}
+const Input = (props) => {
+    return(
+      <Form.Group>
+          {props.label && <Form.Label>{props.label}</Form.Label>}
+          <Form.Control 
+              type={props.type} 
+              placeholder={props.placeholder} 
+              value={props.value}
+              onChange={props.onChange}
+              {...props}
+          />
+          <Form.Text className="text-muted">
+             {props.errorMessage}
+          </Form.Text>
+      </Form.Group>
+     )
+  
+   }
 
 export default Input;

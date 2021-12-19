@@ -5,13 +5,10 @@ import { authConstants } from '../actions/constants';
 
 const token = window.localStorage.getItem('token');
 
-const axiosIntance = axios.create({ //creating axios instance
-    baseURL: api,//assinged base url
+const axiosIntance = axios.create({
+    baseURL: api,
     headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": true,
-        "Access-Control-Allow-Credentials": true,
-        'Authorization':token ? `Bearer ${token}` : ''
+        'Authorization': token ? `Bearer ${token}` : ''
     }
 });
 
@@ -27,8 +24,8 @@ axiosIntance.interceptors.response.use((res) => {
     return res;
 }, (error) => {
     console.log(error.response);
-    const { status } = error.response;
-    if(status === 500){
+    const status = error.response ? error.response.status : 500;
+    if(status && status === 500){
         localStorage.clear();
         store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
     }

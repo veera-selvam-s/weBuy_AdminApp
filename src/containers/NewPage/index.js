@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/UI/Modal';
-import { Button } from '@material-ui/core';
 import Layout from '../../components/Layout';
 import Input from '../../components/UI/Input';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -62,7 +61,6 @@ const NewPage = (props) => {
         products.forEach((product, index) => {
             form.append('products', product);
         });
-
         dispatch(createPage(form));
 
         
@@ -167,7 +165,7 @@ const NewPage = (props) => {
     return (
         <Layout sidebar>
             {renderCreatePageModal()}
-            <Button variant="contained" color="primary" onClick={() => setCreateModal(true)}>Create Page</Button>
+            <button onClick={() => setCreateModal(true)}>Create Page</button>
         </Layout>
     )
 
