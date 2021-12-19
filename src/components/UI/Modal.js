@@ -19,14 +19,14 @@ import { Button } from '@material-ui/core';
           <Modal.Footer>
               {
                   props.buttons ? props.buttons.map((btn, index) =>
-                      <Button key={index} variant={btn.color} onClick={btn.onClick}>
+                      <Button key={index} variant={btn.variant} color={btn.color} onClick={btn.onClick}>
                           {btn.label}
                       </Button>
                   ):
                   <Button 
                       variant="primary" 
                       {...props} 
-                      style={{backgroundColor: '#333'}}
+                      style={{backgroundColor: 'orange'}}
                       className="btn-sm" 
                       onClick={props.onSubmit}
                   >
