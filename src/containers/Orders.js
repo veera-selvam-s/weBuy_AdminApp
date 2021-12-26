@@ -6,6 +6,10 @@ import Card from "../components/UI/Card";
 
 import "./order.css";
 
+/**
+ * @author
+ * @function Orders
+ **/
 
 const Orders = (props) => {
   const order = useSelector((state) => state.order);
@@ -44,7 +48,7 @@ const Orders = (props) => {
                   ></div>
                   <div className="orderInfo">
                     <div className="status">{status.type}</div>
-                    <div className="date">Fri, 2020</div>
+                    <div className="date">Fri, 2022</div>
                   </div>
                 </div>
               ))}
