@@ -6,36 +6,48 @@ import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../actions/user.actions';
 import Layout from '../components/Layout';
+import { useEffect } from "react";
 
 const Signup = (props) => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-    const auth = useSelector(state => state.auth);
-    const user = useSelector(state => state.user);
-    const dispatch = useDispatch();
-
-    const usersignup = (e) => {
-        e.preventDefault();
-        const user = {
-            firstName, lastName, email, password
-        }
-        dispatch(signup(user));
+  useEffect(() => {
+    if (!user.loading) {
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
     }
+  }, [user.loading]);
 
-    if (auth.authenticate) {
-        return <Redirect to={`/`} />
-    }
+  const userSignup = (e) => {
+    e.preventDefault();
 
-    if (user.loading) {
-        return (
-            <p>loading...</p>
-        )
-    }
+    const user = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    dispatch(signup(user));
+  };
+
+  if (auth.authenticate) {
+    return <Redirect to={`/`} />;
+  }
+
+  if (user.loading) {
+    return <p>Loading...!</p>;
+  }
 
     return (
         <Layout>
@@ -43,7 +55,7 @@ const Signup = (props) => {
                 {user.message}
                 <Row style={{ marginTop: '40px' }}>
                     <Col md={{ span: 6, offset: 3 }}>
-                        <Form onSubmit={usersignup}>
+                        <Form onSubmit={userSignup}>
                             <Row>
                                 <Col md={6}>
                                     <Input
