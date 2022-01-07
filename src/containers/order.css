@@ -1,5 +1,6 @@
 .orderTrack{
-    width: 500px;
+    width: 800px;
+    padding-left: 100px;
     display: flex;
 }
 .orderStatus{
@@ -43,4 +44,49 @@
 .value{
     font-size: 12px;
     text-transform: capitalize;
+}
+.statusconfbtn{
+    box-sizing:border-box;
+    padding: 100px;
+    display: flex;
+    align-Items: center;
+}
+.statusconfbtn > div{
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+#cnfbtn{
+    background-color: rgb(47, 131, 241);
+    color:white;
+}
+@media screen and (max-width: 1080px) {
+    .orderTrack{
+        width: 600px;
+        padding-left: 50px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .orderTrack{
+        width: 500px;
+        padding-left: 50px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .orderTrack{
+        width: 280px;
+        padding-left:30px;
+    }
+    .statusconfbtn{
+        padding:50px 0px;
+    }
+    .statusconfbtn > div{
+        padding-left: 10px;
+        padding-right:10px;
+    }
+}
+@media screen and (max-width: 340px) {
+    .orderTrack{
+        width: 250px;
+        padding-left:25px;
+    }
 }

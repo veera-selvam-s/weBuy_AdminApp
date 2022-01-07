@@ -1,8 +1,12 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../components/UI/Input";
+import { Button } from '@material-ui/core';
+import { IconButton } from '@mui/material';
+import { MdPlaylistAdd } from 'react-icons/md';
+import { FcInfo, FcDeleteRow } from 'react-icons/fc';
 import { addProduct, deleteProductById } from "../actions";
 import Modal from "../components/UI/Modal";
 import { generatePublicUrl } from "../urlConfig";
@@ -63,7 +67,6 @@ const Products = (props) => {
       <Table style={{ fontSize: 12 }} responsive="sm">
         <thead>
           <tr>
-            <th>#</th>
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -74,17 +77,20 @@ const Products = (props) => {
         <tbody>
           {product.products.length > 0
             ? product.products.map((product) => (
-                <tr key={product._id}>
-                  <td>2</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.quantity}</td>
-                  <td>{product.category.name}</td>
-                  <td>
-                    <button onClick={() => showProductDetailsModal(product)}>
-                      info
-                    </button>
-                    <button
+              <tr key={product._id}>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>{product.quantity}</td>
+                <td>{product.category.name}</td>
+                <td>
+                  <div className="actionblk">
+                  <div>
+                  <IconButton onClick={() => showProductDetailsModal(product)}>
+                    <FcInfo />
+                  </IconButton>
+                  </div>
+                  <div className="delBtn">
+                    <IconButton
                       onClick={() => {
                         const payload = {
                           productId: product._id,
@@ -92,11 +98,13 @@ const Products = (props) => {
                         dispatch(deleteProductById(payload));
                       }}
                     >
-                      del
-                    </button>
-                  </td>
-                </tr>
-              ))
+                      <FcDeleteRow />
+                    </IconButton>
+                  </div>
+                  </div>
+                </td>
+              </tr>
+            ))
             : null}
         </tbody>
       </Table>
@@ -149,8 +157,8 @@ const Products = (props) => {
         </select>
         {productPictures.length > 0
           ? productPictures.map((pic, index) => (
-              <div key={index}>{pic.name}</div>
-            ))
+            <div key={index}>{pic.name}</div>
+          ))
           : null}
         <input
           type="file"
@@ -230,12 +238,12 @@ const Products = (props) => {
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Products</h3>
-              <button onClick={handleShow}>Add</button>
+              <Button id="addBtn" variant="contained" onClick={handleShow}><MdPlaylistAdd /> ADD</Button>
             </div>
           </Col>
         </Row>
         <Row>
-          <Col>{renderProducts()}</Col>
+          <Col className="tablePad">{renderProducts()}</Col>
         </Row>
       </Container>
       {renderAddProductModal()}

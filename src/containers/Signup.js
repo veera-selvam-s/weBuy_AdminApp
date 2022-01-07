@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap';
+import { FormGroup } from '@mui/material';
 import Input from '../components/UI/Input';
 import { Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
@@ -55,7 +56,7 @@ const Signup = (props) => {
                 {user.message}
                 <Row style={{ marginTop: '40px' }}>
                     <Col md={{ span: 6, offset: 3 }}>
-                        <Form onSubmit={userSignup}>
+                        <FormGroup onSubmit={userSignup}>
                             <Row>
                                 <Col md={6}>
                                     <Input
@@ -94,7 +95,7 @@ const Signup = (props) => {
                             <Button variant="contained" type="submit" color="primary">
                                 Submit
                             </Button>
-                        </Form>
+                        </FormGroup>
                     </Col>
                 </Row>
             </Container>

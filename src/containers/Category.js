@@ -19,8 +19,10 @@ import {
     IoIosArrowDown, 
     IoIosAdd, 
     IoIosTrash, 
-    IoIosCloudUpload
-} from 'react-icons/io'
+    IoIosCloudUpload,
+    IoMdCheckboxOutline
+} from 'react-icons/io';
+import {FcOpenedFolder,FcFolder,FcFile} from 'react-icons/fc';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './categoryComponents/UpdateCategoriesModal';
 import AddCategoryModal from './categoryComponents/AddCategoryModal';
@@ -222,12 +224,12 @@ const Category = (props) => {
             <Container>
                 <Row>
                     <Col md={12}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className='catContainer'>
                             <h3>Category</h3>
                             <div className="actionBtnContainer">
                                 <span>Actions: </span>
                                 <button onClick={handleShow}><IoIosAdd /> <span>Add</span></button>
-                                <button onClick={deleteCategory}><IoIosTrash /> <span>Delete</span></button>
+                                <button id="delBtn" onClick={deleteCategory}><IoIosTrash /> <span>Delete</span></button>
                                 <button onClick={updateCategory}><IoIosCloudUpload /> <span>Edit</span></button>
                             </div>
 
@@ -246,9 +248,12 @@ const Category = (props) => {
                             icons={{
                                 check: <IoIosCheckbox />,
                                 uncheck: <IoIosCheckboxOutline />,
-                                halfCheck: <IoIosCheckboxOutline />,
+                                halfCheck: <IoMdCheckboxOutline />,
                                 expandClose: <IoIosArrowForward />,
-                                expandOpen: <IoIosArrowDown />
+                                expandOpen: <IoIosArrowDown />,
+                                parentClose: <FcFolder />,
+                                parentOpen: <FcOpenedFolder />,
+                                leaf: <FcFile />
                             }}
                         />
                     </Col>

@@ -18,3 +18,31 @@
     max-height: 100%;
     object-fit: contain;
 }
+h3{
+    color: rgb(31, 109, 253);
+    font-weight: 600;
+}
+#addBtn{
+    background-color: rgb(240, 133, 40);
+    color: white;
+}
+.actionblk{
+    display:flex;
+}
+.delBtn{
+    padding-left: 20px;
+}
+@media screen and (max-width: 450px) {
+    .actionblk{
+        display:inline-block;
+    }
+    .delBtn{
+        padding-left: 0px;
+        padding-top: 25px;
+    }
+    .tablePad{
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+    }
+  }

@@ -13,7 +13,7 @@ import { Button } from '@material-ui/core';
           <Modal.Header closeButton>
               <Modal.Title>{props.modalTitle}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body style={{paddingTop:'10px'}}>
               {props.children}
           </Modal.Body>
           <Modal.Footer>

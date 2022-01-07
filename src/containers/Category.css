@@ -3,11 +3,20 @@
     background-color: #333;
 }
 .modal-title{
-    font-size: 18px;
+    font-size: 20px;
+    font-weight:600;
     color: #fff;
 }
 .modal-footer{
     padding: 5px 15px;
+}
+.catContainer{
+    display:flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+.catContainer > h3 {
+    font-weight: 600;
 }
 
 .actionBtnContainer{
@@ -19,4 +28,14 @@
     border: 0;
     margin: 0 5px;
     font-size: 14px;
+}
+#delBtn{
+    color:red;
+}
+@media screen and (max-width: 450px) {
+    .actionBtnContainer{
+        padding-top: 30px;
+        padding-left: 0px;
+        padding-bottom: 10px;
+    }
 }

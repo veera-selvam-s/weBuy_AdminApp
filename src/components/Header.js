@@ -3,6 +3,9 @@ import { Navbar, Nav, Container, } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../actions/auth.actions';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import logo from '../logo.png'
 
 const Header = (props) => {
@@ -17,7 +20,7 @@ const Header = (props) => {
         return (
             <Nav>
                 <li className="nav-item">
-                    <span className="nav-link" onClick={logout}>Logout</span>
+                    <span className="nav-link" onClick={logout}><LogoutIcon /> Logout</span>
                 </li>
             </Nav>
         );
@@ -27,26 +30,27 @@ const Header = (props) => {
         return (
             <Nav>
                 <li className="nav-item">
-                    <NavLink to="/Signin" className="nav-link">Login</NavLink>
+                    <NavLink to="/Signin" className="nav-link"><LoginIcon /> Login</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/Signup" className="nav-link">Signup</NavLink>
+                    <NavLink to="/Signup" className="nav-link"><ContactsIcon />Signup</NavLink>
                 </li>
             </Nav>
         );
     }
     const logoStyle={
-        width:'3%',
-        height:'auto'
+        width:'100%',
+        height:'auto',
+        maxWidth:'60px'
     }
 
     return (
         <>
-            <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
+            <Navbar collapseOnSelect  expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
                 <Container fluid>
                     <img src={logo} style={logoStyle} alt="logo" />
                     {/* <Navbar.Brand >Admin DashBoard</Navbar.Brand> */}
-                    <Link to="/" className="navbar-brand">Admin DashBoard</Link>
+                    <Link to="/" className="navbar-brand" style={{fontWeight:'600'}}>Admin DashBoard</Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">

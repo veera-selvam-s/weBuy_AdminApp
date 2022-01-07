@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../../components/UI/Modal';
 import Layout from '../../components/Layout';
 import Input from '../../components/UI/Input';
+import Button from '@mui/material/Button';
 import { Container, Row, Col } from 'react-bootstrap';
 import linearCategories from '../../helpers/linearCategories';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPage } from '../../actions';
+import './style.css';
 
 const NewPage = (props) => {
 
@@ -191,7 +193,10 @@ const NewPage = (props) => {
                 :
                 <>
                     {renderCreatePageModal()}
-                    <button onClick={() => setCreateModal(true)}>Create Page</button>
+                    <Button 
+                    id="createBtn"
+                    variant="contained"
+                    onClick={() => setCreateModal(true)}>Create Page</Button>
                 </>
             }
             

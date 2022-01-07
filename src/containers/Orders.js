@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateOrder } from "../actions";
 import Layout from "../components/Layout";
 import Card from "../components/UI/Card";
+import { Button } from '@material-ui/core';
 
 import "./order.css";
 
@@ -34,6 +35,7 @@ import "./order.css";
 
   return (
     <Layout sidebar>
+      <h3>Orders</h3>
       {order.orders.map((orderItem, index) => (
         <Card
           style={{
@@ -72,15 +74,7 @@ import "./order.css";
               <span className="value">{orderItem.paymentStatus}</span>
             </div>
           </div>
-          <div
-            style={{
-              boxSizing: "border-box",
-              padding: "100px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <div className="orderTrack">
+          <div className="orderTrack">
               {orderItem.orderStatus.map((status) => (
                 <div
                   className={`orderStatus ${
@@ -97,14 +91,13 @@ import "./order.css";
                 </div>
               ))}
             </div>
+          <div
+            className="statusconfbtn"
+          >
+            
 
             {/* select input to apply order action */}
-            <div
-              style={{
-                padding: "0 50px",
-                boxSizing: "border-box",
-              }}
-            >
+            <div >
               <select onChange={(e) => setType(e.target.value)}>
                 <option value={""}>select status</option>
                 {orderItem.orderStatus.map((status) => {
@@ -123,14 +116,14 @@ import "./order.css";
             {/* button to confirm action */}
 
             <div
-              style={{
-                padding: "0 50px",
-                boxSizing: "border-box",
-              }}
+              // style={{
+              //   padding: "0 50px",
+              //   boxSizing: "border-box",
+              // }}
             >
-              <button onClick={() => onOrderUpdate(orderItem._id)}>
+              <Button variant="contained" color="primary"  onClick={() => onOrderUpdate(orderItem._id)}>
                 confirm
-              </button>
+              </Button>
             </div>
           </div>
         </Card>
