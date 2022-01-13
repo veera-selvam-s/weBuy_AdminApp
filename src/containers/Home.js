@@ -1,13 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // import { Row, Col, Container } from 'reactstrap';
-import './home.css';
 import { NavLink } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { Container, Carousel } from 'react-bootstrap';
 import Orderpic from './Homepic/orders.png';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import Categorypic from './Homepic/category.jpg';
+import CategoryIcon from '@mui/icons-material/Category';
 import Productpic from './Homepic/products.webp';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import './home.css';
 
 function Home() {
 	const order = useSelector((state) => state.order);
@@ -24,8 +27,8 @@ function Home() {
 							alt="Orders"
 						/>
 						<Carousel.Caption>
-							<h3>Orders</h3>
-							<p>{order.orders.length} orders from customers</p>
+							<h2 className="car-title"><BorderColorIcon />Orders</h2>
+							<h4 className="car-detail">{order.orders.length} orders from customers</h4>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item>
@@ -36,8 +39,8 @@ function Home() {
 						/>
 
 						<Carousel.Caption>
-							<h3>Categories</h3>
-							<p>{category.categories.length} Main Categories</p>
+							<h2 className="car-title"><CategoryIcon />Categories</h2>
+							<h4 className="car-detail">{category.categories.length} Main Categories</h4>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item>
@@ -48,8 +51,8 @@ function Home() {
 						/>
 
 						<Carousel.Caption>
-							<h3>Products</h3>
-							<p>{product.products.length} products</p>
+							<h2 className="car-title"><ListAltIcon />Products</h2>
+							<h4 className="car-detail">{product.products.length} products</h4>
 						</Carousel.Caption>
 					</Carousel.Item>
 				</Carousel>
