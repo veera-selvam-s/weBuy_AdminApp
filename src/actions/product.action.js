@@ -29,10 +29,17 @@ export const addProduct = (form) => {
       dispatch({ type: productConstants.ADD_PRODUCT_REQUEST });
       const res = await axios.post(`product/create`, form);
       if (res.status === 201) {
-        dispatch({ type: productConstants.ADD_PRODUCT_SUCCESS });
+        const { products } = res.data;
+        dispatch({
+          type: productConstants.ADD_PRODUCT_SUCCESS,
+          payload: { products },
+        });
         dispatch(getProducts());
       } else {
-        dispatch({ type: productConstants.ADD_PRODUCT_FAILURE });
+        dispatch({
+          type: productConstants.ADD_PRODUCT_FAILURE,
+          payload: { error: res.data.error }
+        });
       }
     } catch (error) {
       console.log(error);

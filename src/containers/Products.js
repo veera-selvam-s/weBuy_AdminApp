@@ -30,6 +30,18 @@ const Products = (props) => {
   const handleClose = () => {
     setShow(false);
   };
+  useEffect(() => {
+      console.log(product);
+    if(!product.loading){
+        setShow(false);
+        setName('');
+        setQuantity('');
+        setPrice('');
+        setDescription('');
+        setCategoryId('');
+        setProductPictures([]);
+    }
+}, [product]);
 
   const submitProductForm = () => {
     const form = new FormData();
