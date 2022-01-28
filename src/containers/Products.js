@@ -71,7 +71,9 @@ const Products = (props) => {
   };
 
   const handleProductPictures = (e) => {
-    setProductPictures([...productPictures, e.target.files[0]]);
+    for(let i=0;i<e.target.files.length;i++){
+      productPictures.push(e.target.files[i]);
+    }
   };
 
   const renderProducts = () => {
@@ -175,6 +177,7 @@ const Products = (props) => {
         <input
           type="file"
           name="productPicture"
+          multiple
           onChange={handleProductPictures}
         />
       </Modal>
